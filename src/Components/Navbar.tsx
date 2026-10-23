@@ -33,7 +33,7 @@ export default function Navbar() {
           </span>
         </Link>
 
-        {/* Middle links */}
+        
         <ul className="order-3 flex w-full items-center justify-center gap-1 md:order-none md:w-auto">
           {links.map((link) => (
             <li key={link.href}>
@@ -51,7 +51,7 @@ export default function Navbar() {
           ))}
         </ul>
 
-        {/* Counters */}
+        
         <div className="flex items-center gap-4 md:justify-self-end">
           <Link
             href="/my-plan"

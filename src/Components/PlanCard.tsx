@@ -18,7 +18,7 @@ export default function PlanCard({ workout, mode, done, onDone, onRemove }: Prop
         done ? "border-accent/40" : "border-white/5"
       }`}
     >
-      {/* Thumbnail */}
+      
       <div className="relative aspect-video w-full shrink-0 overflow-hidden rounded-lg bg-surface-2 sm:aspect-square sm:h-24 sm:w-24">
         <Image
           src={workout.image}
@@ -29,7 +29,7 @@ export default function PlanCard({ workout, mode, done, onDone, onRemove }: Prop
         />
       </div>
 
-      {/* Info */}
+    
       <div className="min-w-0 flex-1">
         <h3
           className={`font-display text-base font-bold uppercase ${
@@ -53,7 +53,7 @@ export default function PlanCard({ workout, mode, done, onDone, onRemove }: Prop
         </div>
       </div>
 
-      {/* Actions */}
+
       <div className="flex flex-wrap items-center gap-2">
         <Link
           href={`/workout/${workout.id}`}

@@ -35,7 +35,6 @@ export default function Library() {
     };
   }, [attempt]);
 
-  // Highest first for every option
   const sorted = useMemo(
     () => [...workouts].sort((a, b) => b[sortBy] - a[sortBy]),
     [workouts, sortBy]

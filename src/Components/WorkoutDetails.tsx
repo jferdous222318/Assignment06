@@ -58,7 +58,6 @@ export default function WorkoutDetails({
       </Link>
 
       <div className="grid gap-8 lg:grid-cols-2 lg:gap-12">
-        {/* Left: image */}
         <div className="lg:sticky lg:top-24 lg:self-start">
           <div className="relative aspect-square w-full overflow-hidden rounded-2xl border border-white/5 bg-surface-2">
             <Image
@@ -72,7 +71,6 @@ export default function WorkoutDetails({
           </div>
         </div>
 
-        {/* Right: info */}
         <div>
           <div className="flex flex-wrap gap-1.5">
             {workout.muscleGroups.map((g) => (
@@ -87,7 +85,6 @@ export default function WorkoutDetails({
             {workout.description}
           </p>
 
-          {/* Key specs */}
           <h2 className="mt-8 font-display text-sm font-bold uppercase tracking-widest text-accent">
             Key Specs
           </h2>
@@ -105,7 +102,6 @@ export default function WorkoutDetails({
             ))}
           </dl>
 
-          {/* Instructions */}
           <h2 className="mt-8 font-display text-sm font-bold uppercase tracking-widest text-accent">
             Instructions
           </h2>
