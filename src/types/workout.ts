@@ -1,14 +1,15 @@
-export interface IProduct{
-    id:number;
-    name:string;
-    categories:string[];
-    brand:string;
-    tier:string;
-    deliveryTime:number;
-    price:number;
-    warranty:number;
-    stock:string;
-    rating:number;
-    description:string;
-    setupGuide:string[];
-}
+export type Workout = {
+  id: number;
+  name: string;
+  image: string;
+  muscleGroups: string[];
+  equipment: string;
+  difficulty: string;
+  duration: number;
+  caloriesBurned: number;
+  sets: number;
+  reps: string;
+  rating: number;
+  description: string;
+  instructions: string[];
+};

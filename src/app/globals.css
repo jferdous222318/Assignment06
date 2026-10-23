@@ -1,15 +1,23 @@
-export type Workout = {
-  id: number;
-  name: string;
-  image: string;
-  muscleGroups: string[];
-  equipment: string;
-  difficulty: string;
-  duration: number;
-  caloriesBurned: number;
-  sets: number;
-  reps: string;
-  rating: number;
-  description: string;
-  instructions: string[];
-};
+@import "tailwindcss";
+
+@theme {
+  --color-bg: #0b0b0b;
+  --color-surface: #141414;
+  --color-surface-2: #1c1c1c;
+  --color-line: #262626;
+  --color-accent: #ccff00;
+  --color-muted: #9a9a9a;
+
+  --font-display: var(--font-oswald), "Oswald", sans-serif;
+  --font-body: var(--font-inter), "Inter", sans-serif;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--color-bg);
+  color: #f5f5f5;
+  font-family: var(--font-body);
+}

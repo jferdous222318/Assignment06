@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import { Inter, Oswald } from "next/font/google";
 import { Toaster } from "react-hot-toast";
 import { PlanProvider } from "@/context/PlanContext";
+import Navbar from "@/Components/Navbar";
+import Footer from "@/Components/Footer";
 import "./globals.css";
 
 const oswald = Oswald({ subsets: ["latin"], variable: "--font-oswald" });
@@ -15,11 +17,11 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en" className={`${oswald.variable} ${inter.variable}`}>
-      <body className="min-h-screen flex flex-col">
+      <body className="min-h-screen flex flex-col"suppressHydrationWarning>
         <PlanProvider>
-          {/* <Navbar /> — next step */}
+          <Navbar />
           <main className="flex-1">{children}</main>
-          {/* <Footer /> — next step */}
+          <Footer />
           <Toaster
             position="top-center"
             toastOptions={{
