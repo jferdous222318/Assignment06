@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { Suspense } from "react";
 import { Inter, Oswald } from "next/font/google";
 import { Toaster } from "react-hot-toast";
 import { PlanProvider } from "@/context/PlanContext";
@@ -16,10 +17,18 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" className={`${oswald.variable} ${inter.variable}`}>
-      <body className="min-h-screen flex flex-col"suppressHydrationWarning>
+    <html
+      lang="en"
+      data-scroll-behavior="smooth"
+      className={`${oswald.variable} ${inter.variable}`}
+    >
+      <body className="min-h-screen flex flex-col" suppressHydrationWarning>
         <PlanProvider>
-          <Navbar />
+          <Suspense
+            fallback={<div className="h-14 border-b border-white/5 bg-bg" />}
+          >
+            <Navbar />
+          </Suspense>
           <main className="flex-1">{children}</main>
           <Footer />
           <Toaster
