@@ -9,6 +9,8 @@ import PlanTabs, { type TabKey } from "@/Components/PlanTabs";
 import PlanCard from "@/Components/PlanCard";
 import EmptyState from "@/Components/EmptyState";
 import Spinner from "@/Components/Spinner";
+import { matchesQuery } from "@/lib/search";
+import SearchInput from "@/Components/SearchInput";
 
 export default function MyPlan() {
   const {
@@ -25,6 +27,7 @@ export default function MyPlan() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);
   const [tab, setTab] = useState<TabKey>("plan");
+  const [query, setQuery] = useState("");
   const [attempt, setAttempt] = useState(0);
 
   useEffect(() => {
@@ -57,6 +60,7 @@ export default function MyPlan() {
     .map((id) => byId.get(id))
     .filter((w): w is Workout => Boolean(w));
 
+ 
   const metrics = {
     exercises: planItems.length,
     minutes: planItems.reduce((sum, w) => sum + w.duration, 0),
@@ -64,7 +68,13 @@ export default function MyPlan() {
   };
 
   const items = tab === "plan" ? planItems : savedItems;
+  const filtered = items.filter((w) => matchesQuery(w, query));
   const isLoading = loading || !hydrated;
+
+  const handleTabChange = (next: TabKey) => {
+    setTab(next);
+    setQuery("");
+  };
 
   return (
     <section className="mx-auto max-w-6xl px-4 py-10 sm:px-6 sm:py-12">
@@ -79,12 +89,22 @@ export default function MyPlan() {
 
       <PlanTabs
         active={tab}
-        onChange={setTab}
+        onChange={handleTabChange}
         planCount={planIds.length}
         savedCount={savedIds.length}
       />
 
       <div className="mt-6">
+        {!isLoading && !error && items.length > 0 && (
+          <div className="mb-4">
+            <SearchInput
+              value={query}
+              onChange={setQuery}
+              placeholder="Search your lifts…"
+            />
+          </div>
+        )}
+
         {isLoading ? (
           <Spinner label="Loading workouts…" />
         ) : error ? (
@@ -101,9 +121,13 @@ export default function MyPlan() {
           </div>
         ) : items.length === 0 ? (
           <EmptyState />
+        ) : filtered.length === 0 ? (
+          <p className="rounded-xl border border-dashed border-white/10 bg-surface py-12 text-center text-sm text-muted">
+            No lifts match &ldquo;{query}&rdquo;.
+          </p>
         ) : (
           <div className="space-y-3">
-            {items.map((w) => (
+            {filtered.map((w) => (
               <PlanCard
                 key={w.id}
                 workout={w}
